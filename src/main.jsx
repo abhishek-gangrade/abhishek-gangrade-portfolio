@@ -115,13 +115,6 @@ const IconAward = () => (
   </svg>
 );
 
-const IconCamera = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-    <circle cx="12" cy="13" r="4" />
-  </svg>
-);
-
 const IconBook = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
@@ -321,23 +314,6 @@ const SIP_DETAILS = {
     "Statistics",
     "Physics",
     "Chemistry"
-  ],
-  // Verified field photographs from Dhulkot
-  photoSlots: [
-    {
-      id: 1,
-      title: "Classroom Session & Student Interaction",
-      caption: "Conducting educational sessions covering IT fundamentals, cyber-safety practices, and STEM concepts with high school students (Classes 9th–12th) at Shashkiya Utkrisht Vidhyalay, Dhulkot.",
-      image: "/sip/sip-classroom-students.jpg",
-      isVerified: true
-    },
-    {
-      id: 2,
-      title: "Interaction with Faculty & Staff",
-      caption: "With school leadership, teachers, and staff outside the main entrance of Shashkiya Utkrisht Vidhyalay, Dhulkot during the Societal Internship Program.",
-      image: "/sip/sip-faculty-dhulkot.jpg",
-      isVerified: true
-    }
   ]
 };
 
@@ -349,19 +325,17 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const [networkViewTab, setNetworkViewTab] = useState("topology"); // "topology" | "config"
-  const [activeModalPhoto, setActiveModalPhoto] = useState(null);
 
-  // Close mobile menu or photo modal on escape key
+  // Close mobile menu on escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        setActiveModalPhoto(null);
+      if (e.key === "Escape" && mobileMenuOpen) {
         setMobileMenuOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [mobileMenuOpen]);
 
   // Close mobile menu on resize to desktop
   useEffect(() => {
@@ -374,9 +348,9 @@ export default function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, [mobileMenuOpen]);
 
-  // Lock body scroll when mobile menu or photo modal is active
+  // Lock body scroll when mobile menu is active
   useEffect(() => {
-    if (mobileMenuOpen || activeModalPhoto) {
+    if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -384,7 +358,7 @@ export default function App() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [mobileMenuOpen, activeModalPhoto]);
+  }, [mobileMenuOpen]);
 
   const copyEmail = () => {
     navigator.clipboard.writeText("agangrade72@gmail.com").then(() => {
@@ -1296,68 +1270,6 @@ Router(config-subif)# ip helper-address 10.0.0.2`}</code>
                   ))}
                 </div>
               </div>
-
-              {/* PHOTOGRAPH GALLERY COMPONENT */}
-              <div className="sipGalleryContainer">
-                <div className="galleryHeaderRow">
-                  <div>
-                    <h4 className="sipBlockTitle">Field Documentation & Photograph Gallery</h4>
-                    <p className="gallerySubtext">
-                      Photographic records from teaching sessions and faculty engagement at Shashkiya Utkrisht Vidhyalay, Dhulkot.
-                    </p>
-                  </div>
-                  <div className="galleryStatusBadge verifiedBadge">
-                    <IconCheck />
-                    <span>Verified Field Documentation</span>
-                  </div>
-                </div>
-
-                <div className="sipPhotoGrid">
-                  {SIP_DETAILS.photoSlots.map((slot) => (
-                    <div
-                      key={slot.id}
-                      className={`photoCardPlaceholder ${slot.image ? "hasImage" : ""}`}
-                      onClick={() => slot.image && setActiveModalPhoto(slot)}
-                      role={slot.image ? "button" : undefined}
-                      tabIndex={slot.image ? 0 : undefined}
-                      onKeyDown={(e) => {
-                        if (slot.image && (e.key === "Enter" || e.key === " ")) {
-                          e.preventDefault();
-                          setActiveModalPhoto(slot);
-                        }
-                      }}
-                      aria-label={slot.image ? `View full photo: ${slot.title}` : undefined}
-                    >
-                      <div className="photoFrame">
-                        {slot.image ? (
-                          <>
-                            <img src={slot.image} alt={slot.caption} loading="lazy" />
-                            <div className="photoOverlayBadge">
-                              <IconCheck />
-                              <span>VERIFIED FIELD PHOTO</span>
-                            </div>
-                            <div className="photoZoomPrompt">
-                              <span>Click to enlarge ↗</span>
-                            </div>
-                          </>
-                        ) : (
-                          <div className="placeholderContent">
-                            <div className="placeholderIcon">
-                              <IconCamera />
-                            </div>
-                            <span className="placeholderLabel">Photo Asset Slot #{slot.id}</span>
-                            <span className="placeholderNotice">{slot.title}</span>
-                          </div>
-                        )}
-                      </div>
-                      <div className="photoCaptionArea">
-                        <strong className="photoSlotTitle">{slot.title}</strong>
-                        <p className="photoSlotCaption">{slot.caption}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -1710,42 +1622,6 @@ Router(config-subif)# ip helper-address 10.0.0.2`}</code>
           </div>
         </div>
       </footer>
-
-      {/* Photo Lightbox Modal */}
-      {activeModalPhoto && (
-        <div
-          className="photoLightboxModal"
-          onClick={() => setActiveModalPhoto(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label={activeModalPhoto.title}
-        >
-          <div className="lightboxBackdrop" />
-          <div className="lightboxContent" onClick={(e) => e.stopPropagation()}>
-            <button
-              type="button"
-              className="lightboxCloseBtn"
-              onClick={() => setActiveModalPhoto(null)}
-              aria-label="Close photo preview"
-            >
-              <IconClose />
-            </button>
-            <div className="lightboxImgWrap">
-              <img src={activeModalPhoto.image} alt={activeModalPhoto.caption} />
-            </div>
-            <div className="lightboxCaption">
-              <div className="lightboxBadgeRow">
-                <span className="lightboxBadge">SHASHKIYA UTKRISHT VIDHYALAY, DHULKOT</span>
-                <span className="lightboxVerifiedBadge">
-                  <IconCheck /> VERIFIED FIELD RECORD
-                </span>
-              </div>
-              <h4>{activeModalPhoto.title}</h4>
-              <p>{activeModalPhoto.caption}</p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
