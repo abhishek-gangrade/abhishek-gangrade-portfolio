@@ -184,14 +184,14 @@ const EXPERTISE_CARDS = [
     tag: "ALGORITHMS",
     icon: <IconBrain />,
     title: "Problem Solving & DSA",
-    text: "Strong foundational problem solving in Java, covering core data structures (arrays, linked lists, stacks, queues, heaps), recursion, sorting, and algorithmic debugging with clean, readable implementations.",
-    technologies: ["Java", "Arrays", "LinkedList", "Stacks & Queues", "Heap", "Recursion"]
+    text: "Strong foundational problem solving in Java with 100+ problems solved on LeetCode. Covers core data structures (arrays, linked lists, stacks, queues, heaps), recursion, sorting, and algorithmic debugging with clean implementations.",
+    technologies: ["Java", "100+ LeetCode", "Arrays", "LinkedList", "Stacks & Queues", "Heap", "Recursion"]
   }
 ];
 
 const SKILLS_BY_CATEGORY = {
   "Core Computer Science": [
-    "Data Structures & Algorithms",
+    "Data Structures & Algorithms (100+ LeetCode)",
     "OOP",
     "Operating Systems",
     "DBMS",
@@ -713,7 +713,7 @@ export default function App() {
                 <div className="factItem">
                   <span className="factLabel">CORE FOCUS</span>
                   <strong className="factValue">Full-Stack Development & Networking</strong>
-                  <span className="factSub">MERN Stack, Java DSA, CCNA</span>
+                  <span className="factSub">MERN Stack, Java DSA (100+ LeetCode), CCNA</span>
                 </div>
               </div>
             </div>
