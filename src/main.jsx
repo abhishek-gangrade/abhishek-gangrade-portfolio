@@ -184,8 +184,8 @@ const EXPERTISE_CARDS = [
     tag: "ALGORITHMS",
     icon: <IconBrain />,
     title: "Problem Solving & DSA",
-    text: "Strong foundational problem solving in Java, covering data structures (arrays, trees, graphs, heaps), recursion, sorting, and algorithmic debugging with emphasis on clean, readable implementations.",
-    technologies: ["Java", "Data Structures", "Algorithms", "Debugging", "OOP"]
+    text: "Strong foundational problem solving in Java, covering core data structures (arrays, linked lists, stacks, queues, heaps), recursion, sorting, and algorithmic debugging with clean, readable implementations.",
+    technologies: ["Java", "Arrays", "LinkedList", "Stacks & Queues", "Heap", "Recursion"]
   }
 ];
 
@@ -890,7 +890,7 @@ export default function App() {
             <div className="projectContentCol">
               <div className="projectMetaLine">
                 <span className="projectCategoryTag techBlueTag">02 · FULL-STACK · REAL-TIME WORKFLOWS</span>
-                <span className="projectStatusBadge">Core Implemented</span>
+                <span className="projectStatusBadge">Deployed Live</span>
               </div>
 
               <h3 id="printnearTitle" className="projectTitle">
@@ -947,6 +947,15 @@ export default function App() {
               </div>
 
               <div className="projectActionButtons">
+                <a
+                  href="https://print-near-flax.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btnPrimary btnSm"
+                >
+                  <span>Live Demo</span>
+                  <IconExternal />
+                </a>
                 <a
                   href="https://github.com/abhishek-gangrade/PrintNear.git"
                   target="_blank"

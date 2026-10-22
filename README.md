@@ -10,8 +10,8 @@ A recruiter-ready, technically credible personal portfolio built with React 19 a
 - **Interactive Technical Visuals**:
   - Hero engineering profile card with systems focus and verified metrics (CGPA 8.28/10, B.Tech CSE 2027, 3x CCNA).
   - Enterprise Network Simulation card with interactive Topology View vs. Cisco IOS CLI OSPF Configuration Spec.
-- **Verified Project Proof**: Preserved and elevated case studies for Homecoming (MERN) and PrintNear (hyper-local printing platform) with real screenshots and working links.
-- **Societal Internship Program (SIP)**: Dedicated case study for community teaching engagement at Shashkiya Utkrisht Vidhyalay, Dhulkot with reported metrics (45 lectures, 60 hours, Classes 9–12), structured contributions, and photograph gallery slots ready for real photo assets.
+- **Verified Project Proof**: Preserved and elevated case studies for Homecoming (MERN) and PrintNear (hyper-local printing platform) with real screenshots, live production deployments, and working GitHub links.
+- **Societal Internship Program (SIP)**: Dedicated case study for community teaching engagement at Shashkiya Utkrisht Vidhyalay, Dhulkot with verified metrics (45 lectures, 60 hours, Classes 9–12), structured contributions, and academic subject records.
 - **Responsive Navigation**: Sticky header with desktop links, brand monogram, direct resume link, and an accessible slide-in mobile navigation drawer.
 
 ## Main Sections
